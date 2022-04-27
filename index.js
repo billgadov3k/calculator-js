@@ -46,6 +46,6 @@ function check(one) {
 function addResul() {
   let result = eval(document.querySelector(".result").innerHTML);
   if (result) {
-    document.querySelector(".result").innerHTML = eval(result);
+    document.querySelector(".result").innerHTML = window.eval(result);
   }
 }
