@@ -41,9 +41,5 @@ body {
     grid-template-columns: repeat(4, 3fr);
 }
 
-.display-num2 {
-    color: brown;
-    font-size: 0.5em;
-}
 
 
