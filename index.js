@@ -1,9 +1,5 @@
 let queryResult = document.querySelector(".result");
 
-// document.querySelector(".btnC").addEventListener("click", () => {
-//   queryResult.innerHTML = "";
-// });
-
 const buttons = [
   { selector: "btnOne", param: 1 },
   { selector: "btnTwo", param: 2 },
