@@ -19,8 +19,7 @@ const buttons = [
   { selector: "btnMinus", param: "-" },
 ];
 
-// добавим кнопки в калькулятор
-
+// добавим кнопки в калькулятор через JS
 buttons.forEach((value) => {
   let createEl = document.createElement("button");
   createEl.setAttribute("class", `btn ${value.selector}`);
@@ -33,13 +32,14 @@ buttons.forEach((value) => {
   body.appendChild(createEl);
 });
 
+//клики и функции обработчики
 buttons.forEach((value) => {
   let el = document.querySelector(`.${value.selector}`);
   if (value.param == -1) {
     el.addEventListener("click", () => addResul());
   } else if (value.param == "clear") {
     el.addEventListener("click", () => {
-      queryResult .value = "";
+      queryResult.value = '';
     });
   } else {
     el.addEventListener("click", () => check(value.param));
@@ -47,13 +47,44 @@ buttons.forEach((value) => {
 });
 
 function check(one) {
-  queryResult.value = queryResult.value + one;
-}
+  if (one == "+" || one == "-" || one == "*" || one == "/"){
+    queryResult.value = queryResult.value + " " + one + " ";
+  } else {
+    queryResult.value = queryResult.value + one;
+  }
+};
 
 function addResul() {
-  console.log(queryResult.value);
-  let result = eval(queryResult.value);
-  if (result) {
-    queryResult.value = window.eval(result);
+  let result = 0;
+  let operator = "";
+  let data = queryResult.value.trim().split(" ");
+  console.log(data);
+  for (let i=0; i < data.length; i++){
+    console.log("Элемент массива:", data[i])
+    if (data[i] == "+" || data[i] == "-" || data[i] == "*" || data[i] == "/") {
+      operator = data[i];
+      continue;
+    } else {
+      console.log("дата", data[i]);
+      if (operator == "") {
+        result = result + Number(data[i]);
+      }
+      switch (operator) {
+        case "+":
+          result = result + Number(data[i]);
+          break;
+        case "-":
+          result = result - Number(data[i]);
+          break;
+        case "*":
+          result = result * Number(data[i]);
+          break;
+        case "/":
+          result = result / Number(data[i]);
+          break;
+      }
+    }
+    console.log("Итоговый результат:", result);
   }
+  queryResult.value = result;
 }
